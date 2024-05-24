@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+<title>Catalogue entreprise</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+
+</head>
+<body>
+<header>
+   <div class="navbar navbar-default">
+       <div class="containet-fluid">
+          <ul class="nav navbar-nav">
+            <li><a th:href="@{/entreprises}">Entreprises</a></li>
+            <li><a th:href="@{/taxes}">Taxes</a></li>
+            <li><a th:href="@{/formEntreprise}">Saisies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right text-primary">
+            <li><span></span><a th:href="@{/login?logout}">Logout</a></li>
+          </ul>
+       </div>
+   </div>
+</header>
+<div class="container content">
+  <div class="col-md-11 col-sm-10 col-xs-12">
+   <div class="panel panel-primary">
+    <div class="panel-heading">Liste Entreprise</div>
+    <div class="panel-body">
+     <form th:action="@{/consulterEntreprise}" method="get" class="form form-inline">
+        <div>
+          <input type="text" name="motCle" th:value="${motCle}" class="form-control col-md-8" placeholder="Rechercher parmis les entreprises" />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+     </form>
+     <table class="table table-striped">
+       <thead>
+         <tr>
+           <th>REF</th><th>NOM</th><th>EMAIL</th><th>PRESENTATION</th><th>Les Taxes</th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr th:each="e:${entreprises}">
+           <td th:text="${e.code}"></td>
+           <td th:text="${e.nom}"></td>
+           <td th:text="${e.email}"></td>
+           <td th:text="${e.description}"></td>
+           <td>
+            <a th:href="@{/taxes(code=${e.code})}">Taxes</a>
+           </td>
+        </tr>  
+       </tbody>
+     </table>
+     <div>
+        <ul class="nav nav-pills">
+          <li th:class="${pageCourante==status.index}?'active':''" th:each="pa,status:${pages}"><a th:text="${status.index}" th:href="@{entreprises(motCle=${motCle},page=${status.index})}"></a></li>
+        </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+</div>
+
+
+</body>
+</html>

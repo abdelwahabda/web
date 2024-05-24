@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+<title>Page Taxes</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="col-md-6 col-md-offset-3 panel-login">
+     <div class="panel panel-primary">
+       <div class="panel-heading">
+         Athentification
+       </div>
+       <div class="panel body" style="padding: 10px">
+         <div class="error" th:if="${param.error}">Username ou mot de passe incorrects</div>
+           <div class="success" th:if="${param.logout}">Vous etes déconnecter</div>
+         <form th:action="@{/login}" method="post" class="form">
+           <div class="form-group">
+             <label class="label-control">Username</label>
+             <input type="text" name="username" class="form-control" />
+           </div>
+           <div class="form-group">
+             <label class="label-control">Password </label>
+             <input type="password" name="password" class="form-control" />
+           </div>
+           <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+         </form>
+       </div>
+     </div>
+  </div>
+</div>
+</body>
+</html>

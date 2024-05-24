@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>TP Catalogue Entreprise</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="/css/style.css"/>
+</head>
+<body>
+<header>
+ <div class="container-fluid">
+   <ul class="navbar navbar-primary">
+     <li><a th:href="@{/entreprises}">Entreprises</a></li>
+     <li><a th:href="@{/taxes}">Taxes</a></li>
+     <li><a th:href="@{/formEntreprise}">Saisies</a></li>
+   </ul>
+ </div>
+</header> 
+<section layout:fragment="content"></section>
+<footer class="footer">TP Gestion Entreprise By K-Developper</footer> 
+</body>
+</html>

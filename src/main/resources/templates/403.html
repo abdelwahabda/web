@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+<title>Acced Dined</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+
+</head>
+<body>
+<header>
+   <div class="navbar navbar-default">
+       <div class="containet-fluid">
+          <ul class="nav navbar-nav">
+            <li><a th:href="@{/entreprises}">Entreprises</a></li>
+            <li><a th:href="@{/taxes}">Taxes</a></li>
+            <li><a th:href="@{/formEntreprise}">Saisies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right text-primary">
+            <li><span></span><a th:href="@{/login?logout}">Logout</a></li>
+          </ul>
+       </div>
+   </div>
+</header>
+<div class="container content">
+  <div class="col-md-8 col-sm-10 col-md-offset-1 col-xs-12">
+   <div class="panel panel-primary">
+    <div class="panel-heading">Problème d'autorisation</div>
+    <div class="panel-body text-danger">
+        Vous ne disposer pas les droits pour accéder a ses ressources 
+     <div>
+     </div>
+    </div>
+   </div>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<div ui-view>
+ <div class="col-md-8 col-md-offset-2">
+<div class="panel panel-success">
+<div class="panel-heading">
+   Consultation Entreprise 
+</div>
+<div class="panel-body">
+    <input type="text" ng-model="motCle" class="form-control" />
+    <button class="btn btn-success" ng-click="chercher()">Chercher</button>
+
+</div>
+</div>
+</div>
+<div class="col-md-8 col-md-offset-2">
+<div class="panel panel-success">
+   <div class="panel-heading">
+     Liste Des entreprises Enregistrer depui un serveur Web 
+   </div>
+   <div class="panel-body">
+     <table class="table table striped">
+      <thead>
+        <tr>
+          <th>REF</th> <th>NOM</th> <th>EMAIL</th> <th>PRESENTATION</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="e in pageEntreprises.content | filter:motCle">
+             <td>{{e.code}}</td>
+             <td>{{e.nom}}</td>
+             <td>{{e.email}}</td>
+             <td>{{e.description}}</td>
+          </tr>
+      </tbody>
+     </table>
+     <div>
+       <ul class="nav nav-pills">
+         <li ng-class="{'active':pageCourante==$index}" ng-repeat="p in pages track by $index">
+          <a class="clickable" ng-click="goToPage($index)">{{$index}}</a>
+         </li>
+       </ul>
+     </div>
+   </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+<title>Page Taxes</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+
+</head>
+<body>
+<header>
+   <div class="navbar navbar-default">
+       <div class="containet-fluid">
+          <ul class="nav navbar-nav">
+            <li><a th:href="@{/entreprises}">Entreprises</a></li>
+            <li><a th:href="@{/taxes}">Taxes</a></li>
+            <li><a th:href="@{/formEntreprise}">Saisies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right text-primary">
+            <li><span></span><a th:href="@{/login?logout}">Logout</a></li>
+          </ul>
+       </div>
+   </div>
+</header>
+<div class="container">
+<div class="col-md-8">
+ <div class="panel panel-primary">
+ <div class="panel-heading">Consultation Taxe</div>
+  <div class="panel-body">
+    <form th:action="@{/listeTaxes}" method="get" class="form form-inline" id="form">
+  
+      
+      <select name="nomEntreprise" class="form-control" onchange="document.getElementById('form').submit()">
+        <option th:value="${listeNoms.get(0)}">Selectionner une entreprise</option>
+        <option th:each="n:${listeNoms}" th:value="${n}" th:text="${n}"></option>
+     </select>
+  
+     <button class="btn btn-primary" type="submit">Chercher</button>
+    </form>
+  </div>
+ </div>
+</div>
+<div class="col-md-8">
+ 
+   <div class="panel panel-primary">
+    <div class="panel-heading">Liste Taxes</div>
+    <div class="panel-body">
+      <table class="table table-striped">
+      
+       <thead>
+        <tr>
+          <th>TYPE</th>
+          <th>TITRE</th>
+          <th>MONTANT</th>
+          <th>DATE TAXE</th>
+          <th>ENTREPRISE</th>
+        </tr>
+       </thead>
+       <tbody>
+         <tr th:each="t:${taxes}">
+           <td th:text="${t.class.simpleName}"></td>
+           <td th:text="${t.titre}"></td>
+           <td th:text="${t.montant}"></td>
+           <td th:text="${t.dateTaxe}"></td>
+           <td th:text="${t.entreprise.nom}"></td>
+        </tr>  
+       </tbody>
+      </table>
+       <div>
+        <ul class="nav nav-pills">
+          <li th:class="${pageCourante==status.index}?'active':''" th:each="pa,status:${pages}"><a th:text="${status.index}" th:href="@{/taxes(code=${code},page=${status.index})}"></a></li>
+        </ul>
+     </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Nouvelle taxe</div>
+    <div class="panel-body">
+     <form th:action="@{/addTaxe}" method="post" class="form">
+       <div class="form-group">
+         <label class="label-control">Entreprise</label>
+         <input type="hidden" name="nomEntreprise" class="form-control" th:value="${listeNoms.get(code-1)}" th:text="${listeNoms.get(code-1)}"/>
+       </div>
+       <div class="form-group">
+         <label class="label-control">Type </label>
+         <select name="type" class="form-control">
+            <option>TVA</option>
+            <option>IR</option>
+         </select>
+       </div>
+       <div class="form-group">
+         <label class="label-control">Titre</label>
+         <input type="text" name="titre" class="form-control" />
+       </div>
+       <div class="form-group">
+         <label class="label-control">Montant</label>
+         <input type="text" name="montant" class="form-control" />
+       </div>
+       <button type="submit" class="btn btn-primary">Ajouter</button>
+     </form>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
